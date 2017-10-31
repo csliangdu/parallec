@@ -38,6 +38,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -256,7 +257,18 @@ public class ParallelTask {
         this.state = ParallelTaskState.WAITING;
         if (responseContext != null)
             this.responseContext = responseContext;
-
+        System.out.println("***************************ParallelTask****************************");
+		System.out.println("Size = " + responseContext.size());
+		Iterator iter = responseContext.entrySet().iterator();
+		while (iter.hasNext()) {
+			@SuppressWarnings("unchecked")
+			Entry<String, Object> entry = (Entry<String, Object>) iter.next();
+			String key = entry.getKey();
+			Object val = entry.getValue();
+			System.out.println("Key = " + key);
+			System.out.println("val = " + val.toString());
+		}
+		System.out.println("***************************ParallelTask****************************");
         this.replacementVarMapNodeSpecific
                 .putAll(replacementVarMapNodeSpecific);
         this.replacementVarMap.putAll(replacementVarMap);
